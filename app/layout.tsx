@@ -15,8 +15,37 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://enzodupuis.dev"),
   title: "Enzo Dupuis — Développeur Fullstack & IA | Portfolio",
   description: "Portfolio d'Enzo Dupuis, Développeur Fullstack admis en BUT Informatique. Créateur de Sirene Leads, Second Cerveau IPCRA et d'architectures SaaS modernes.",
+  keywords: ["Enzo Dupuis", "Développeur Fullstack", "Intelligence Artificielle", "SaaS", "Next.js", "TypeScript", "BUT Informatique", "Sirene Leads", "IPCRA"],
+  authors: [{ name: "Enzo Dupuis", url: "https://enzodupuis.dev" }],
+  creator: "Enzo Dupuis",
+  openGraph: {
+    title: "Enzo Dupuis — Développeur Fullstack & IA",
+    description: "Portfolio d'Enzo Dupuis, Développeur Fullstack admis en BUT Informatique. Créateur de Sirene Leads et d'architectures SaaS modernes.",
+    url: "https://enzodupuis.dev",
+    siteName: "Enzo Dupuis Portfolio",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Enzo Dupuis — Développeur Fullstack & IA",
+    description: "Développeur Fullstack & Concepteur de produits SaaS modernes.",
+    creator: "@enzodupuis",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 }
 
 export const viewport: Viewport = {

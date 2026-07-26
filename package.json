@@ -1,7 +1,8 @@
 {
-  "name": "my-v0-project",
+  "name": "enzo-dupuis-portfolio",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "build": "next build",
     "dev": "next dev",

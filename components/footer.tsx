@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ArrowUpRight, Copy, Check } from "lucide-react"
+import Link from "next/link"
 
 export function Footer() {
   const [time, setTime] = useState("")
@@ -112,7 +113,7 @@ export function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex gap-8">
+          <div className="flex flex-wrap items-center gap-6 md:gap-8">
             {[
               { label: "GitHub", href: "https://github.com" },
               { label: "LinkedIn", href: "https://linkedin.com" },
@@ -130,6 +131,13 @@ export function Footer() {
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/mentions-legales"
+              data-cursor-hover
+              className="font-mono text-xs tracking-widest text-muted-foreground hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm transition-colors duration-300 underline underline-offset-4"
+            >
+              Mentions Légales
+            </Link>
           </div>
 
           {/* Copyright */}

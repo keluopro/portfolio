@@ -8,10 +8,12 @@ import { Footer } from "@/components/footer"
 import { CustomCursor } from "@/components/custom-cursor"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { SectionBlend } from "@/components/section-blend"
+import { JsonLd } from "@/components/json-ld"
 
 export default function Home() {
   return (
     <SmoothScroll>
+      <JsonLd />
       <CustomCursor />
       <Navbar />
       <main id="main-content">

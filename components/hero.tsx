@@ -46,6 +46,7 @@ export function Hero() {
         >
           <motion.button
             data-cursor-hover
+            aria-label="Explorer les réalisations et projets SaaS"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => {

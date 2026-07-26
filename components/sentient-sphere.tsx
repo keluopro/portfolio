@@ -104,7 +104,8 @@ function Sphere() {
   useFrame((state, delta) => {
     if (materialRef.current) {
       materialRef.current.uniforms.uTime.value += delta
-      materialRef.current.uniforms.uMouse.value = [pointer.x, pointer.y]
+      materialRef.current.uniforms.uMouse.value[0] = pointer.x
+      materialRef.current.uniforms.uMouse.value[1] = pointer.y
     }
 
     if (meshRef.current) {
@@ -116,7 +117,7 @@ function Sphere() {
 
   return (
     <mesh ref={meshRef}>
-      <icosahedronGeometry args={[1.8, 64]} />
+      <icosahedronGeometry args={[1.8, 32]} />
       <shaderMaterial
         ref={materialRef}
         vertexShader={vertexShader}
