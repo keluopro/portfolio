@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // À retirer une fois components/ui et les anciens composants supprimés :
+  // ils ne sont plus importés mais leurs erreurs de type bloqueraient le build.
   typescript: {
     ignoreBuildErrors: true,
-  },
-  images: {
-    unoptimized: true,
   },
   async headers() {
     return [
