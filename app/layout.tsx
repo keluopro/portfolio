@@ -1,72 +1,56 @@
-import type React from "react"
+import type { ReactNode } from "react"
 import type { Metadata, Viewport } from "next"
-import { Playfair_Display, Geist_Mono } from "next/font/google"
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { site } from "@/lib/site"
 import "./globals.css"
 
-const playfair = Playfair_Display({
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
+const instrument = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
 })
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-})
+const title = `${site.name} — ${site.role}`
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://enzodupuis.dev"),
-  title: "Enzo Dupuis — Développeur Fullstack & IA | Portfolio",
-  description: "Portfolio d'Enzo Dupuis, Développeur Fullstack admis en BUT Informatique. Créateur de Sirene Leads, Second Cerveau IPCRA et d'architectures SaaS modernes.",
-  keywords: ["Enzo Dupuis", "Développeur Fullstack", "Intelligence Artificielle", "SaaS", "Next.js", "TypeScript", "BUT Informatique", "Sirene Leads", "IPCRA"],
-  authors: [{ name: "Enzo Dupuis", url: "https://enzodupuis.dev" }],
-  creator: "Enzo Dupuis",
+  metadataBase: new URL(site.url),
+  title: { default: title, template: `%s — ${site.name}` },
+  description: site.description,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Enzo Dupuis — Développeur Fullstack & IA",
-    description: "Portfolio d'Enzo Dupuis, Développeur Fullstack admis en BUT Informatique. Créateur de Sirene Leads et d'architectures SaaS modernes.",
-    url: "https://enzodupuis.dev",
-    siteName: "Enzo Dupuis Portfolio",
+    title,
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
     locale: "fr_FR",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Enzo Dupuis — Développeur Fullstack & IA",
-    description: "Développeur Fullstack & Concepteur de produits SaaS modernes.",
-    creator: "@enzodupuis",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  twitter: { card: "summary_large_image", title, description: site.description },
 }
 
 export const viewport: Viewport = {
-  themeColor: "#050505",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f6f5f1" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0f0e" },
+  ],
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="fr" className={`${playfair.variable} ${geistMono.variable}`}>
-      <body className="font-sans antialiased overflow-x-hidden">
+    <html lang="fr" className={`${geist.variable} ${geistMono.variable} ${instrument.variable}`}>
+      <body className="font-sans">
         <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-md focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
+          href="#contenu"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-fg focus:px-4 focus:py-2 focus:text-bg"
         >
-          Aller au contenu principal
+          Aller au contenu
         </a>
-        <div className="noise-overlay" aria-hidden="true" />
         {children}
         <Analytics />
       </body>

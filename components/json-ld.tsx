@@ -1,48 +1,22 @@
+import { site } from "@/lib/site"
+
 export function JsonLd() {
-  const jsonLdData = {
+  const data = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://enzodupuis.dev/#person",
-        "name": "Enzo Dupuis",
-        "jobTitle": "Développeur Fullstack & Concepteur SaaS",
-        "url": "https://enzodupuis.dev",
-        "email": "contact@enzodupuis.dev",
-        "knowsAbout": [
-          "Next.js",
-          "React",
-          "TypeScript",
-          "Intelligence Artificielle",
-          "Agents IA",
-          "SaaS",
-          "PostgreSQL",
-          "Méthodologie IPCRA"
-        ],
-        "alumniOf": {
-          "@type": "EducationalOrganization",
-          "name": "BUT Informatique"
-        },
-        "sameAs": [
-          "https://github.com",
-          "https://linkedin.com"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://enzodupuis.dev/#website",
-        "url": "https://enzodupuis.dev",
-        "name": "Enzo Dupuis Portfolio",
-        "description": "Portfolio professionnel d'Enzo Dupuis, développeur Fullstack et concepteur de SaaS.",
-        "inLanguage": "fr-FR"
-      }
-    ]
+    "@type": "Person",
+    "@id": `${site.url}/#person`,
+    name: site.name,
+    jobTitle: site.role,
+    url: site.url,
+    email: `mailto:${site.email}`,
+    knowsAbout: ["TypeScript", "React", "Next.js", "PostgreSQL", "SaaS", "Agents IA"],
+    sameAs: Object.values(site.socials).filter(Boolean),
   }
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   )
 }
